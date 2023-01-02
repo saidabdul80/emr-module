@@ -61,35 +61,35 @@
                         <h5 class="px-3 pt-3">Heart Rate</h5>
                         <hr>
                         <div style="position: relative;">
-                            <canvas id="HeartRate" style="position: absolute;"></canvas>
-                        </div>
+                            <div><canvas id="HeartRate" style="position: absolute;"></canvas></div>
+                        </div>   
                     </div>
                 </div>
                 <div class="col-md-6 mb-3">
                     <div class="border rounded" style="height: 350px;min-width:200px">
                         <h5 class="px-3 pt-3">Blood Pressure</h5>
                         <hr>
-                        <canvas id="BloodPressure" width="400" height="400">
-
-                        </canvas>
+                        <div style="position: relative;">
+                        <div><canvas id="BloodPressure" style="position:absolute;"></canvas></div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6 mb-3">
                     <div class="border rounded" style="height: 350px;min-width:200px">
                         <h5 class="px-3 pt-3">Sleep</h5>
                         <hr>
-                        <canvas id="Sleep" width="400" height="400">
-
-                        </canvas>
+                        <div style="position: relative;">
+                        <div><canvas id="Sleep" style="position:absolute;"></canvas></div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6 mb-3">
                     <div class="border rounded" style="height: 350px;min-width:200px">
                         <h5 class="px-3 pt-3">Activity</h5>
                         <hr>
-                        <canvas id="Activity" width="400" height="400">
-
-                        </canvas>
+                        <div style="position: relative;">
+                        <div><canvas id="Activity" style="position:absolute;"></canvas></div>
+                        </div>
                     </div>
                 </div>
 
@@ -109,26 +109,16 @@
                 }
             },
             methods: {
-
-            },
-            mounted() {                
-                
-               
-
-            }
-
-        }).mount('#appIn')
-
-        $(document).ready(function(){
-                    const ctx = $('#HeartRate');
+                initChart(data,labels,id,name){
+                    const ctx = $('#'+id);
                     console.log(ctx,4);
                     new Chart(ctx, {
                         type: 'line',
                         data: {
-                            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                            labels: labels,
                             datasets: [{
-                                label: '# of Heart Rate',
-                                data: [12, 19, 3, 5, 2, 3],
+                                label: '# of '+name,
+                                data: data,
                                 borderWidth: 1
                             }]
                         },
@@ -140,6 +130,19 @@
                             }
                         }
                     });
+                }
+            },
+            mounted() {  
+                this.initChart([12, 19, 3, 5, 2, 3],['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],'HeartRate','Heart Rate')                                              
+                this.initChart([12, 19, 3, 5, 2, 3],['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],'BloodPressure','Blood Pressure')                              
+                this.initChart([12, 19, 3, 5, 2, 3],['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],'Sleep','Sleep')                              
+                this.initChart([12, 19, 3, 5, 2, 3],['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],'Activity','Activity')                              
+            }
+
+        }).mount('#appM')
+
+        $(document).ready(function(){
+                   
                 })
         $(document).ready(function() {
             
