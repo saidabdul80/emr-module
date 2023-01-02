@@ -109,9 +109,11 @@
                 }
             },
             methods: {
+                async fetchData(url){
+                    return await axios.post(url);
+                }
                 initChart(data,labels,id,name){
-                    const ctx = $('#'+id);
-                    console.log(ctx,4);
+                    const ctx = $('#'+id);                    
                     new Chart(ctx, {
                         type: 'line',
                         data: {

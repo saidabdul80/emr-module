@@ -40,6 +40,8 @@ use Twig\Loader\FilesystemLoader;
 use OpenEMR\Modules\SmartDevice\CustomSkeletonRestController;
 
 require_once 'GlobalConfig.php';
+require_once 'CustomSkeletonFHIRResourceService.php';
+
 class Bootstrap
 {
     const MODULE_INSTALLATION_PATH = "/interface/modules/custom_modules/";
