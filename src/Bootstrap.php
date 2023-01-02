@@ -14,11 +14,12 @@
  * @license   https://github.com/openemr/openemr/blob/master/LICENSE GNU General Public License 3
  */
 
-namespace OpenEMR\Modules\CustomModuleSkeleton;
+namespace OpenEMR\Modules\SmartDevice;
 
 /**
  * Note the below use statements are importing classes from the OpenEMR core codebase
  */
+
 use OpenEMR\Common\Logging\SystemLogger;
 use OpenEMR\Common\Twig\TwigContainer;
 use OpenEMR\Core\Kernel;
@@ -36,13 +37,13 @@ use Twig\Error\LoaderError;
 use Twig\Loader\FilesystemLoader;
 
 // we import our own classes here.. although this use statement is unnecessary it forces the autoloader to be tested.
-use OpenEMR\Modules\CustomModuleSkeleton\CustomSkeletonRestController;
+use OpenEMR\Modules\SmartDevice\CustomSkeletonRestController;
 
-
+require_once 'GlobalConfig.php';
 class Bootstrap
 {
     const MODULE_INSTALLATION_PATH = "/interface/modules/custom_modules/";
-    const MODULE_NAME = "oe-module-custom-skeleton";
+    const MODULE_NAME = "emr_module";
     /**
      * @var EventDispatcherInterface The object responsible for sending and subscribing to events through the OpenEMR system
      */
@@ -93,13 +94,14 @@ class Bootstrap
     public function subscribeToEvents()
     {
         $this->addGlobalSettings();
-
+        
         // we only add the rest of our event listeners and configuration if we have been fully setup and configured
         if ($this->globalsConfig->isConfigured()) {
-            $this->registerMenuItems();
-            $this->registerTemplateEvents();
-            $this->subscribeToApiEvents();
+            
         }
+        $this->registerMenuItems();
+        $this->registerTemplateEvents();
+        $this->subscribeToApiEvents();
     }
 
     /**
@@ -208,10 +210,10 @@ class Bootstrap
         $menuItem->requirement = 0;
         $menuItem->target = 'mod';
         $menuItem->menu_id = 'mod0';
-        $menuItem->label = xlt("Custom Module Skeleton");
+        $menuItem->label = xlt("Smart Device");
         // TODO: pull the install location into a constant into the codebase so if OpenEMR changes this location it
         // doesn't break any modules.
-        $menuItem->url = "/interface/modules/custom_modules/oe-module-custom-skeleton/public/sample-index.php";
+        $menuItem->url = "/interface/modules/custom_modules/emr-module/public/sample-index.php";
         $menuItem->children = [];
 
         /**
@@ -260,7 +262,7 @@ class Bootstrap
             $this->eventDispatcher->addListener(RestApiCreateEvent::EVENT_HANDLE, [$this, 'addCustomSkeletonApi']);
             $this->eventDispatcher->addListener(RestApiScopeEvent::EVENT_TYPE_GET_SUPPORTED_SCOPES, [$this, 'addApiScope']);
             $this->eventDispatcher->addListener(RestApiResourceServiceEvent::EVENT_HANDLE, [$this, 'addMetadataConformance']);
-        }
+        }        
     }
 
     public function addCustomSkeletonApi(RestApiCreateEvent $event)

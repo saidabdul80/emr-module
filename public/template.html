@@ -1,0 +1,97 @@
+<?php
+
+/**
+ * Sample HTML page
+ *
+ * @package   OpenEMR
+ * @link      http://www.open-emr.org
+ *
+ * @author    Stephen Nielson <stephen@nielson.org>
+ * @copyright Copyright (c) 2021 Stephen Nielson <stephen@nielson.org>
+ * @license   https://github.com/openemr/openemr/blob/master/LICENSE GNU General Public License 3
+ */
+
+?>
+<html>
+<title>Smart Device</title>
+<link rel="stylesheet" href="assets/css/bootstrap.css">
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/propper.js"></script>
+<script src="assets/js/axios.js"></script>
+<script src="assets/js/jquery-datatable.js"></script>
+<script src="assets/js/vue.js"></script>
+<script src="main.js"></script>
+
+<body>
+    <div id="loaderHtml" class="w-100 position-absolute xloader">
+        <div class="middle">
+            <div class="bar bar1"></div>
+            <div class="bar bar2"></div>
+            <div class="bar bar3"></div>
+            <div class="bar bar4"></div>
+            <div class="bar bar5"></div>
+            <div class="bar bar6"></div>
+            <div class="bar bar7"></div>
+            <div class="bar bar8"></div>
+        </div>
+    </div>
+    <div id="loader" class="w-100 position-absolute">
+        <div class="spinner-grow" role="status" style="width: 200px;height:200px">
+        </div>
+    </div>
+    <div id="appM">
+        <p class="p-3 bg-light">Patient Records from devices</p>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Active</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            </li>
+        </ul>
+    </div>
+    <script>
+        const {
+            createApp
+        } = Vue
+        createApp({
+            data() {
+                return {
+
+                }
+            },
+            methods: {
+
+            },
+            mounted() {
+
+
+            }
+
+        }).mount('#appIn')
+        $(document).ready(function() {
+            $('#tablexxxx').DataTable({
+                responsive: true,
+                dom: 'Bfrtip',
+                buttons: [
+                    'excel',
+                    'pdf'
+                ],
+                pageLength: 6,
+
+            });
+            setTimeout(function() {
+                switchPage()
+            }, 4000)
+        })
+    </script>
+</body>
+
+</html>

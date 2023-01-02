@@ -13,7 +13,7 @@
   "keywords": ["openemr", "openemr-module"],
   "minimum-stability": "stable",
   "autoload": {
-    "psr-4": {"OpenEMR\\Modules\\CustomModuleSkeleton\\": "src/"}
+    "psr-4": {"OpenEMR\\Modules\\SmartDevice\\": "src/"}
   },
   "require": {
     "openemr/oe-module-installer-plugin": "^0.1.0",
