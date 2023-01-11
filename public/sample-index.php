@@ -11,18 +11,24 @@ $row = sqlFetchArray($res);
 $token = $row['token'];
 $base_url = $row['base_url'];
 
-$client = new GuzzleHttp\Client([
-    'base_url' => $base_url
-]);
+try{
 
-echo $token;
-$response = $client->request('POST', $base_url.'fetch_tokens', [
-    'form_params' => [
-        'token' => $token,
-    ]
-]);
-
-$pids = json_decode($response->getBody()->getContents());
+    $client = new GuzzleHttp\Client([
+        'base_url' => $base_url
+    ]);
+    
+    
+    $response = $client->request('POST', $base_url.'fetch_tokens', [
+        'form_params' => [
+            'token' => $token,
+            ]
+        ]);
+        
+        $pids = json_decode($response->getBody()->getContents());
+}catch(\Exception $e){
+    echo $e->getMessage();
+    die();
+}
 
 $patientId = $_SESSION['pid'] ?? 0;
 foreach ($pids->patients as $key => &$p) {
