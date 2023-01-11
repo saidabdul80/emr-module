@@ -23,6 +23,7 @@ class CustomSkeletonFHIRResource extends FHIRDomainResource
      * @var FHIRReference
      */
     public $patient = null;
+    public $observation = null;
 
     /**
      * @return FHIRReference
@@ -40,6 +41,20 @@ class CustomSkeletonFHIRResource extends FHIRDomainResource
     {
         $this->patient = $patient;
         return $this;
+    }
+
+    public function setObservation(FHIRReference $observation): CustomSkeletonFHIRResource
+    {
+        $this->observation = $observation;
+        return $this;
+    }
+
+    public function jsonSerializeObservation()
+    {
+        $json = parent::jsonSerialize();
+        $json['resourceType'] = 'pghd';
+        $json['observations'] = $this->observation;
+        return $json;
     }
 
     public function jsonSerialize()

@@ -19,9 +19,15 @@
     "openemr/oe-module-installer-plugin": "^0.1.0",
     "php": ">= 7.4",
     "symfony/event-dispatcher": "^4.4.0",
-    "nyholm/psr7": "^1.4"
+    "nyholm/psr7": "^1.4",
+    "guzzlehttp/guzzle": "^7.5"
   },
   "conflict": {
     "openemr/openemr": "<6.0.0"
+  },
+  "config": {
+    "allow-plugins": {
+      "openemr/oe-module-installer-plugin": true
+    }
   }
 }
