@@ -14,7 +14,7 @@ $base_url = $row['base_url'];
 try{
 
     $client = new GuzzleHttp\Client([
-        'base_url' => 'http://emrwebapp.vlabnigeria.org/fetch_tokens'
+        'base_url' => $base_url
     ]);
     
     
