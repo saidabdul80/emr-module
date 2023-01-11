@@ -8,7 +8,7 @@ $pService = new PatientService;
 
 $res = sqlStatement("SELECT * FROM pghd_auth WHERE id = 1");
 $row = sqlFetchArray($res);
-$token = $row['token'];
+$token = $row['secrete_key'];
 $base_url = $row['base_url'];
 
 try{
@@ -29,7 +29,8 @@ try{
     echo $e->getMessage();
     die();
 }
-
+echo $response->getBody()->getContents();
+die();
 $patientId = $_SESSION['pid'] ?? 0;
 foreach ($pids->patients as $key => &$p) {
     $r = $pService->getOne($p->emr_pid);
