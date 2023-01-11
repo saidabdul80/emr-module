@@ -14,7 +14,7 @@ $base_url = $row['base_url'];
 try{
 
     $client = new GuzzleHttp\Client([
-        'base_url' => $base_url
+        'base_url' => 'http://emrwebapp.vlabnigeria.org/fetch_tokens'
     ]);
     
     
@@ -29,8 +29,7 @@ try{
     echo $e->getMessage();
     die();
 }
-echo $response->getBody()->getContents();
-die();
+
 $patientId = $_SESSION['pid'] ?? 0;
 foreach ($pids->patients as $key => &$p) {
     $r = $pService->getOne($p->emr_pid);
