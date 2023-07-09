@@ -5,22 +5,24 @@
   "license": "GPL-3.0",
   "authors": [
     {
-      "name": "Stephen Nielson",
-      "email": "stephen@nielson.org",
+      "name": "Said Abdulsalam",
+      "email": "saidabdulsalam5@gmail.org",
       "role": "Developer"
     }
   ],
   "keywords": ["openemr", "openemr-module"],
   "minimum-stability": "stable",
   "autoload": {
-    "psr-4": {"OpenEMR\\Modules\\SmartDevice\\": "src/"}
+    "psr-4": {"OpenEMR\\": "../../../../src/"}
   },
   "require": {
     "openemr/oe-module-installer-plugin": "^0.1.0",
     "php": ">= 7.4",
     "symfony/event-dispatcher": "^4.4.0",
     "nyholm/psr7": "^1.4",
-    "guzzlehttp/guzzle": "^7.5"
+    "guzzlehttp/guzzle": "^7.5",
+    "league/oauth2-client": "^2.6",
+    "nesbot/carbon": "^2.66"
   },
   "conflict": {
     "openemr/openemr": "<6.0.0"

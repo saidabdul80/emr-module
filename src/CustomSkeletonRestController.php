@@ -71,7 +71,7 @@ class CustomSkeletonRestController
      * @param HttpRestRequest $request
      * @return ResponseInterface
      */
-    public function getOneResource($fhirId, HttpRestRequest $request) : CustomSkeletonFHIRResource
+    public function getOneResource($fhirId, HttpRestRequest $request) : PGHDFHIRResource
     {
         if ($request->isPatientRequest()) {
             // only allow access to data of binded patient

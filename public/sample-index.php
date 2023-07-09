@@ -2,47 +2,17 @@
 require_once("../../../../globals.php");
 require '../vendor/autoload.php';
 //require '../../../../../src/Common/Uuid/UuidRegistry.php';
-use OpenEMR\Services\PatientService;
 
-$pService = new PatientService;
 
+/* 
 $res = sqlStatement("SELECT * FROM pghd_auth WHERE id = 1");
 $row = sqlFetchArray($res);
 $token = $row['secrete_key'];
-$base_url = $row['base_url'];
-
-try {
-
-    $client = new GuzzleHttp\Client([
-        'base_url' => $base_url
-    ]);
-
-
-    $response = $client->request('POST', $base_url . 'fetch_tokens', [
-        'form_params' => [
-            'token' => $token,
-        ]
-    ]);
-
-    $pids = json_decode($response->getBody()->getContents());
-} catch (\Exception $e) {
-    echo $e->getMessage();
-    die();
-}
-
-$patientId = $_SESSION['pid'] ?? 0;
-foreach ($pids->patients as $key => &$p) {
-    $r = $pService->getOne($p->emr_pid);
-    $p->details = $r->getData()[0];
-}
-$patientPortal = 0;
-$patient = [];
-if (isset($_SESSION['pid']) && isset($_SESSION['patient_portal_onsite_two'])) {
-    $pid = $_SESSION['pid'];
-    $patient = $pService->findByPid($pid);
-    $patientPortal = 1;
-}
-
+$base_url = $row['base_url']; */
+require  'Model.php';
+$wearables =  Model::get("pghd_wearable",[],true);   
+include('config.php');
+$domain = $_SERVER['SERVER_NAME'].'/pghd_authorized';
 /**
  * Sample HTML page
  *
@@ -57,43 +27,13 @@ if (isset($_SESSION['pid']) && isset($_SESSION['patient_portal_onsite_two'])) {
 ?>
 <html>
 <title>Smart Device</title>
-<link rel="stylesheet" href="assets/css/bootstrap.css">
-<link rel="stylesheet" href="assets/css/datatable.css">
-<link rel="stylesheet" href="assets/css/picker.css">
-<script src="assets/js/jquery.js"></script>
-<script src="assets/js/propper.js"></script>
-<script src="assets/js/bootstrap.js"></script>
-<script src="assets/js/picker.js"></script>
-<script src="assets/js/axios.js"></script>
-<script src="assets/js/jquery-datatable.js"></script>
-<script src="assets/js/date-fns.js"></script>
-<script src="assets/js/chart.js"></script>
-<script src="assets/js/apex-chart.js"></script>
-<script src="assets/js/vue.js"></script>
-<script src="main.js"></script>
-<style>
-    
-    .cdc div::-webkit-scrollbar {
-        width: 3px;
-        height: 5px;
-        
-    }
-    .cdc div::-webkit-scrollbar-track {
-        background: #f1f1f1; 
-    }
-    .cdc div::-webkit-scrollbar-thumb {
-        background: #888; 
-        border-radius:10px;
-    }
-    .cdc div::-webkit-scrollbar-thumb:hover {
-    
-    background: #555; 
-    } 
-</style>
-<body class="row w-100 mx-auto">
+<?php
+    @include('nav.php');
+?>
+<div class="row w-100">
     <div class="col-xs-12 col-md-2 col-lg-1"></div>
     <div class="col-xs-12 col-md-8 col-lg-10 w-100 mx-0 pb-0 bg-white position-relative" id="app">
-        <div id="loaderHtml" class="w-100 position-absolute xloader">
+        <!-- <div id="loaderHtml" class="w-100 position-absolute xloader">
             <div class="middle">
                 <div class="bar bar1"></div>
                 <div class="bar bar2"></div>
@@ -104,16 +44,13 @@ if (isset($_SESSION['pid']) && isset($_SESSION['patient_portal_onsite_two'])) {
                 <div class="bar bar7"></div>
                 <div class="bar bar8"></div>
             </div>
-        </div>
-        <div id="loader" class="w-100 position-absolute">
-            <div class="spinner-border" role="status" style="width: 60px;height:60px">
-            </div>
-        </div>
+        </div> -->
+       
         <div id="appM">
             <div class="row w-100 p-3 bg-light mx-auto">
                 <div class="col-md-8">
                     <p class="">Patient Records from <b> {{currentSource}} </b></p>
-                </div>
+               </div>
                 <div class="col-md-4" v-if="!patientPortal">
                     <select @change="selectPatient()" v-model="patient_id" class="form-control selectpicker">
                         <option value=""></option>
@@ -204,7 +141,7 @@ if (isset($_SESSION['pid']) && isset($_SESSION['patient_portal_onsite_two'])) {
                     to: "",
                     currentSource: "fitbit",
                     patients: <?= json_encode($pids->patients) ?>,
-                    patient: <?= json_encode($patient) ?>,
+                    patient: '<?= json_encode($patient) ?>',
                     patientPortal: <?= $patientPortal ?>,
                     patient_id: '',
                     heart_rate_date: '',
@@ -367,51 +304,6 @@ if (isset($_SESSION['pid']) && isset($_SESSION['patient_portal_onsite_two'])) {
 
         $(document).ready(function() {
             $('.selectpicker').selectpicker();
-            /*    const config = {
-                   type: 'line',
-                   data: data,
-                   options: {
-                       plugins: {
-                           filler: {
-                               propagate: false,
-                           },
-                           title: {
-                               display: true,
-                               text: (ctx) => 'Fill: ' + ctx.chart.data.datasets[0].fill
-                           }
-                       },
-                       interaction: {
-                           intersect: false,
-                       }
-                   },
-               };
-
-               const data = {
-                   labels: generateLabels(),
-                   datasets: [{
-                       label: 'Dataset',
-                       data: generateData(),
-                       borderColor: Utils.CHART_COLORS.red,
-                       backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red),
-                       fill: false
-                   }]
-               };
-               const inputs = {
-                   min: -100,
-                   max: 100,
-                   count: 8,
-                   decimals: 2,
-                   continuity: 1
-               }; */
-
-            /* const generateLabels = () => {
-                return Utils.months({
-                    count: inputs.count
-                });
-            };
-
-            const generateData = () => (Utils.numbers(inputs));
-            */
             $('#tablexxxx').DataTable({
                 responsive: true,
                 dom: 'Bfrtip',
@@ -423,12 +315,11 @@ if (isset($_SESSION['pid']) && isset($_SESSION['patient_portal_onsite_two'])) {
 
             });
             setTimeout(function() {
-
                 switchPage()
-
             }, 1000)
         })
     </script>
+    </div>
 </body>
 
 </html>

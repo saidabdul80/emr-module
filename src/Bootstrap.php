@@ -42,7 +42,7 @@ use OpenEMR\Modules\SmartDevice\CustomSkeletonRestController;
 require_once 'GlobalConfig.php';
 require_once 'CustomSkeletonFHIRResourceService.php';
 require_once 'CustomSkeletonDataStore.php';
-require_once 'CustomSkeletonFHIRResource.php';
+require_once 'PGHDFHIRResource.php';
 require_once 'CustomSkeletonRestController.php';
 
 class Bootstrap

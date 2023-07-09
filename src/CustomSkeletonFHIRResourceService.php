@@ -50,11 +50,11 @@ class CustomSkeletonFHIRResourceService extends FhirServiceBase implements IPati
     /**
      * @param array $dataRecord
      * @param bool $encode
-     * @return CustomSkeletonFHIRResource|\OpenEMR\Services\FHIR\the
+     * @return PGHDFHIRResource|\OpenEMR\Services\FHIR\the
      */
     public function parseOpenEMRRecord($dataRecord = array(), $encode = false)
     {
-        $fhirResource = new CustomSkeletonFHIRResource();
+        $fhirResource = new PGHDFHIRResource();
 
         $meta = new FHIRMeta();
         $meta->setVersionId('1');

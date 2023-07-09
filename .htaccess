@@ -1,0 +1,16 @@
+RewriteEngine On
+#RewriteRule ^(interface/modules/custom_modules/emr-module/public)/(\w+)$ $1/test.php?param1=$2 [L]
+#RewriteRule ^(interface/modules/custom_modules/emr-module/public)/(\w+)/(\w+)$ $1/test.php?param1=$2&param2=$3 [L]
+#RewriteRule ^(interface/modules/custom_modules/emr-module/public)/(\w+)/(\w+)/(\w+)$ $1/test.php?param1=$2&param2=$3&param3=$4 [L]
+#RewriteCond %{REQUEST_URI} !^/public
+#RewriteRule ^interface/modules/custom_modules/emr-module$ /public?username=$1 
+# Disable directory listings (mod_autoindex)
+Options -Indexes
+
+# Prevent mod_dir appending the trailing slash
+DirectorySlash Off
+
+# Enable the rewrite engine (mod_rewrite)
+RewriteEngine On
+# Internally rewrite "/about" to "/about/about_me.html"
+RewriteRule ^test$ interface/modules/custom_modules/emr-module/public/test.html [L]

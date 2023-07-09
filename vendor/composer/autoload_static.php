@@ -8,17 +8,22 @@ class ComposerStaticInit3cdcda2ea9e72e5c508a0aa399a676a8
 {
     public static $files = array (
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
+        'a1105708a18b76903365ca1c4aa61b02' => __DIR__ . '/..' . '/symfony/translation/Resources/functions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
         'S' => 
         array (
             'Symfony\\Polyfill\\Php80\\' => 23,
+            'Symfony\\Polyfill\\Mbstring\\' => 26,
+            'Symfony\\Contracts\\Translation\\' => 30,
             'Symfony\\Contracts\\EventDispatcher\\' => 34,
+            'Symfony\\Component\\Translation\\' => 30,
             'Symfony\\Component\\EventDispatcher\\' => 34,
         ),
         'P' => 
@@ -28,12 +33,16 @@ class ComposerStaticInit3cdcda2ea9e72e5c508a0aa399a676a8
         ),
         'O' => 
         array (
-            'OpenEMR\\Modules\\SmartDevice\\' => 28,
             'OpenEMR\\Composer\\ModuleInstallerPlugin\\' => 39,
+            'OpenEMR\\' => 8,
         ),
         'N' => 
         array (
             'Nyholm\\Psr7\\' => 12,
+        ),
+        'L' => 
+        array (
+            'League\\OAuth2\\Client\\' => 21,
         ),
         'H' => 
         array (
@@ -45,6 +54,10 @@ class ComposerStaticInit3cdcda2ea9e72e5c508a0aa399a676a8
             'GuzzleHttp\\Promise\\' => 19,
             'GuzzleHttp\\' => 11,
         ),
+        'C' => 
+        array (
+            'Carbon\\' => 7,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -52,9 +65,21 @@ class ComposerStaticInit3cdcda2ea9e72e5c508a0aa399a676a8
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-php80',
         ),
+        'Symfony\\Polyfill\\Mbstring\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
+        ),
+        'Symfony\\Contracts\\Translation\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/translation-contracts',
+        ),
         'Symfony\\Contracts\\EventDispatcher\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/event-dispatcher-contracts',
+        ),
+        'Symfony\\Component\\Translation\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/translation',
         ),
         'Symfony\\Component\\EventDispatcher\\' => 
         array (
@@ -62,24 +87,28 @@ class ComposerStaticInit3cdcda2ea9e72e5c508a0aa399a676a8
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-client/src',
         ),
-        'OpenEMR\\Modules\\SmartDevice\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/src',
-        ),
         'OpenEMR\\Composer\\ModuleInstallerPlugin\\' => 
         array (
             0 => __DIR__ . '/..' . '/openemr/oe-module-installer-plugin/src',
         ),
+        'OpenEMR\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/../../../../src',
+        ),
         'Nyholm\\Psr7\\' => 
         array (
             0 => __DIR__ . '/..' . '/nyholm/psr7/src',
+        ),
+        'League\\OAuth2\\Client\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/oauth2-client/src',
         ),
         'Http\\Message\\' => 
         array (
@@ -96,6 +125,10 @@ class ComposerStaticInit3cdcda2ea9e72e5c508a0aa399a676a8
         'GuzzleHttp\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
+        ),
+        'Carbon\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon',
         ),
     );
 
